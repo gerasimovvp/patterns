@@ -1,12 +1,12 @@
 import java.util.Observable;
 import java.util.Observer;
 
-public class CurrentConditionsDisplay implements Observer, DisplayElement{
-    private float temperature;
-    private float humidity;
+public class ForecastDisplay implements Observer, DisplayElement{
+    private float currentPressure = 29.92f;
+    private float lastPressure;
     Observable observable;
 
-    public CurrentConditionsDisplay(Observable observable)
+    public ForecastDisplay(Observable observable)
     {
         this.observable = observable;
         observable.addObserver(this);
@@ -17,8 +17,8 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement{
         if(obs instanceof WeatherData)
         {
             WeatherData weatherData = (WeatherData)obs;
-            this.temperature = weatherData.getTemperature();
-            this.humidity = weatherData.getHumidity();
+            lastPressure = currentPressure;
+            currentPressure = weatherData.getPressure();
             display();
         }
     }
