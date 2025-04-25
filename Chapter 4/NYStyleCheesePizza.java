@@ -7,4 +7,7 @@ public class NYStyleCheesePizza extends Pizza{
         toppings.add("Grated Reggiano Cheese");        
     }   
 
+    void cut(){
+        System.out.println("Cutting the pizza into diagonal slices");
+    }
 }
